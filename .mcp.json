@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "godot": {
+      "command": "node",
+      "args": ["/home/awaken/projects/Godot/projects/godot-mcp/build/index.js"],
+      "env": {
+        "GODOT_PATH": "/var/lib/flatpak/exports/bin/org.godotengine.Godot",
+        "DEBUG": "true"
+      }
+    }
+  }
+}

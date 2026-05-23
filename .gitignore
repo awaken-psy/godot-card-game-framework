@@ -5,6 +5,11 @@
 export.cfg
 *.TMP
 
+# Godot 4 editor/import cache (regenerated automatically)
+.godot/
+# Local cache backups created during migration
+.godot.bak.*/
+
 # Mono-specific ignores
 .mono/
 
