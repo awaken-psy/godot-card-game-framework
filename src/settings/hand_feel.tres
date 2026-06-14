@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="HandFeelSettings" load_steps=2 format=3 uid="uid://handfeel001"]
+
+[ext_resource type="Script" path="res://src/settings/HandFeelSettings.gd" id="1_handfeel"]
+
+[resource]
+script = ExtResource("1_handfeel")
+card_move_duration = 0.25
+card_focus_scale = 1.15
+card_focus_duration = 0.15
+hover_delay_ms = 50
+draw_duration = 0.3
+discard_duration = 0.25
+shuffle_duration = 0.6
+block_shake_intensity = 3.0
+block_shake_frequency = 8.0
+block_duration = 0.3
+damage_popup_duration = 0.8
+damage_popup_scale = 1.5
+ease_type = 2
+trans_type = 2
