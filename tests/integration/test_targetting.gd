@@ -37,8 +37,8 @@ func test_targetting():
 	assert_false(cards[4].highlight.visible,
 			"Test that a highlights disappears once targetting ends")
 
-	await table_move(cards[3],Vector2(300,300))
-	await table_move(cards[2],Vector2(350,400))
+	await table_move(cards[3],Vector2(450, 450))
+	await table_move(cards[2],Vector2(525, 600))
 	card.targeting_arrow.initiate_targeting()
 	board._UT_interpolate_mouse_move(cards[2].global_position,card.global_position,3)
 	await yield_for(0.6)
@@ -77,7 +77,7 @@ func test_signals():
 	card.targeting_arrow.initiate_targeting()
 	assert_signal_emitted(card.targeting_arrow,"initiated_targeting",
 			"initiated_targeting emited")
-	await move_mouse(Vector2(1000,100))
+	await move_mouse(Vector2(1500, 150))
 	card.targeting_arrow.complete_targeting()
 	assert_signal_emitted(card.targeting_arrow,"target_selected",
 			"Targetting empty space, still emits target_selected")

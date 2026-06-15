@@ -12,7 +12,7 @@ class TestExecuteScripts:
 		target.scripts = {"manual": {"hand": [
 				{"name": "move_card_to_board",
 				"subject": "self",
-				"board_position":  Vector2(100,100)}]}}
+				"board_position":  Vector2(150, 150)}]}}
 		card.execute_scripts()
 		await target_card(card,target)
 		await wait_card_tween(card, 1)

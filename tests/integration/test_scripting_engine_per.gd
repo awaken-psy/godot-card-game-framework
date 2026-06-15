@@ -4,7 +4,7 @@ class TestPerToken:
 	extends "res://tests/ScEng_common.gd"
 
 	func test_per_token_and_modify_token_per():
-		await table_move(card, Vector2(100,200))
+		await table_move(card, Vector2(150, 300))
 	# warning-ignore:return_value_discarded
 		card.tokens.mod_token("void",5)
 		await yield_for(0.1)
@@ -78,7 +78,7 @@ class TestTutor:
 				{"name": "spawn_card",
 				"card_name": "Spawn Card",
 				"object_count": "per_tutor",
-				"board_position":  Vector2(100,200),
+				"board_position":  Vector2(150, 300),
 				"per_tutor": {
 					"subject": "tutor",
 					"subject_count": "all",
@@ -94,10 +94,10 @@ class TestPerBoardseek:
 	extends "res://tests/ScEng_common.gd"
 
 	func test_per_boardseek():
-		await table_move(cards[1], Vector2(100,200))
-		await table_move(cards[2], Vector2(300,200))
-		await table_move(cards[3], Vector2(500,200))
-		await table_move(cards[4], Vector2(700,200))
+		await table_move(cards[1], Vector2(150, 300))
+		await table_move(cards[2], Vector2(450, 300))
+		await table_move(cards[3], Vector2(750, 300))
+		await table_move(cards[4], Vector2(1050, 300))
 		card.scripts = {"manual": {"hand": [
 				{"name": "move_card_to_container",
 				"subject": "index",
@@ -143,10 +143,10 @@ class TestFilterPerBoardseek:
 	extends "res://tests/ScEng_common.gd"
 
 	func test_filter_per_boardseek():
-		await table_move(cards[1], Vector2(100,200))
-		await table_move(cards[2], Vector2(300,200))
-		await table_move(cards[3], Vector2(500,200))
-		await table_move(cards[4], Vector2(700,200))
+		await table_move(cards[1], Vector2(150, 300))
+		await table_move(cards[2], Vector2(450, 300))
+		await table_move(cards[3], Vector2(750, 300))
+		await table_move(cards[4], Vector2(1050, 300))
 		# Flip the card facedown if there's 3 cards on board
 		card.scripts = {"manual": {
 				"hand": [
@@ -307,7 +307,7 @@ class TestFilterPerUnique:
 
 	func test_filter_per_count_unique():
 		# Put one bio counter per unique card in deck
-		await table_move(card, Vector2(100,200))
+		await table_move(card, Vector2(150, 300))
 		card.scripts = {"manual": {
 			"board": [
 				{
@@ -365,8 +365,8 @@ class TestOriginalPrevious:
 	extends "res://tests/ScEng_common.gd"
 
 	func test_original_previous():
-		await table_move(card, Vector2(100,200))
-		await table_move(target, Vector2(300,200))
+		await table_move(card, Vector2(150, 300))
+		await table_move(target, Vector2(450, 300))
 		await yield_for(0.1)
 		card.scripts = {"manual": {
 			"board": [

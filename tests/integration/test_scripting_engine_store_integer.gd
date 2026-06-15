@@ -58,8 +58,8 @@ class TestStoreIntegerWithCounters:
 			"2 Credits added")
 
 	func test_store_integer_with_tokens():
-		await table_move(cards[1], Vector2(800,200))
-		await table_move(cards[2], Vector2(100,200))
+		await table_move(cards[1], Vector2(1200, 300))
+		await table_move(cards[2], Vector2(150, 300))
 		cards[1].tokens.mod_token("void",7)
 		cards[2].tokens.mod_token("void",1)
 		# Set all cards on the board to 2 void tokens.

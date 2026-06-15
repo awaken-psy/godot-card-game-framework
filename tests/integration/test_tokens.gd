@@ -6,7 +6,7 @@ class TestBoardTokens:
 	func test_board_tokens():
 		var card : Card
 		card = cards[0]
-		await table_move(card, Vector2(600,200))
+		await table_move(card, Vector2(900, 300))
 		await move_mouse(card.global_position)
 		assert_false(card.tokens.is_drawer_open, "is_drawer_open flag should be false")
 		assert_eq(0.0, card.get_node("Control/Tokens/Drawer").self_modulate[3],
@@ -14,7 +14,7 @@ class TestBoardTokens:
 		assert_eq(Vector2(card.get_node("Control").size.x - 35,20),
 				card.get_node("Control/Tokens/Drawer").position,
 				"Drawer does not extend when card hover when no card has no tokens")
-		await move_mouse(Vector2(1100,200))
+		await move_mouse(Vector2(1650, 300))
 
 		assert_eq(CFConst.ReturnCode.FAILED,card.tokens.mod_token("Should Fail"),
 				"Adding non-defined token returns a FAILED")
@@ -69,7 +69,7 @@ class TestBoardTokens:
 		await yield_for(0.1) # Wait to allow drawer to expand
 		assert_lt(prev_y, card.get_node("Control/Tokens/Drawer").size.y,
 				"When adding more tokens, visible drawer size expands")
-		await move_mouse(Vector2(1000,600))
+		await move_mouse(Vector2(1500, 900))
 		await yield_for(0.1)
 		assert_eq(0.0, card.get_node("Control/Tokens/Drawer").self_modulate[3],
 				"Drawer does not appear without card hover when card has tokens")
@@ -93,11 +93,11 @@ class TestBoardTokens:
 		assert_gt(prev_y, card.get_node("Control/Tokens/Drawer").size.y,
 				"When less tokens drawer size decreases")
 
-		await drag_card(card, Vector2(200,100))
+		await drag_card(card, Vector2(300, 150))
 		assert_eq(0.0, card.get_node("Control/Tokens/Drawer").self_modulate[3],
 				"Drawer closes when card is being dragged")
 		drop_card(card,board._UT_mouse_position)
-		await move_mouse(Vector2(1000,300))
+		await move_mouse(Vector2(1500, 450))
 		await move_mouse(card.global_position)
 		await yield_for(0.6) # Wait to allow drawer to expand
 		card.is_faceup = false
@@ -116,7 +116,7 @@ class TestBoardTokens:
 
 
 		card = cards[3]
-		await table_move(card, Vector2(200,300))
+		await table_move(card, Vector2(300, 450))
 		assert_eq(CFConst.ReturnCode.CHANGED, card.tokens.mod_token("magic", 10),
 				"Adding new token with larger amount returns a CHANGED result")
 		var magic_token: Token = card.tokens.get_token("magic")
@@ -151,7 +151,7 @@ class TestOffBoardTokens:
 		cfc._ut_show_token_buttons = false
 		var card : Card
 		card = cards[3]
-		await table_move(card, Vector2(1000,100))
+		await table_move(card, Vector2(1500, 150))
 		card._on_Card_mouse_entered()
 		await yield_for(0.1)
 		# warning-ignore:return_value_discarded

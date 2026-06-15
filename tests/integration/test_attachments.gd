@@ -9,9 +9,9 @@ class TestAttachAndSwitch:
 		var exhost_attachments: Array
 
 		card = cards[0]
-		await drag_drop(card,Vector2(300,300))
+		await drag_drop(card,Vector2(450, 450))
 		card = cards[1]
-		await drag_card(card, Vector2(310,310))
+		await drag_card(card, Vector2(465, 465))
 		assert_true(cards[0].highlight.visible,
 				"Card hovering over another with attachment flag on, highlights it")
 		assert_eq(cards[0].highlight.modulate,
@@ -34,14 +34,14 @@ class TestAttachAndSwitch:
 				"Attaching card turns attach highlights off")
 
 		card = cards[2]
-		await drag_drop(card,Vector2(410,310))
+		await drag_drop(card,Vector2(615, 465))
 		assert_almost_eq(card.global_position,cards[0].global_position
 				+ Vector2(0,2)
 				* card.get_node('Control').size.y
 				* CFConst.ATTACHMENT_OFFSET[1].y, Vector2(2,2),
 				"Multiple attached card are placed in the right position in regards to their parent")
 		card = cards[3]
-		await drag_drop(card,Vector2(310,310))
+		await drag_drop(card,Vector2(465, 465))
 		assert_almost_eq(card.global_position,cards[0].global_position
 				+ Vector2(0,3)
 				* card.get_node('Control').size.y
@@ -59,7 +59,7 @@ class TestAttachAndSwitch:
 		mp.current_focused_card = card
 		click_card(card)
 		await yield_for(0.5) # Wait to allow dragging to start
-		board._UT_interpolate_mouse_move(Vector2(700,100),card.global_position)
+		board._UT_interpolate_mouse_move(Vector2(1050, 150),card.global_position)
 		await yield_for(0.2)
 		assert_almost_ne(card_prev_pos,cards[3].global_position, Vector2(2,2),
 				"Card drag also drags attachments")
@@ -75,7 +75,7 @@ class TestAttachAndSwitch:
 				* card.get_node('Control').size.y
 				* CFConst.ATTACHMENT_OFFSET[1].y, Vector2(2,2),
 				"After attachment dragged, drop is placed correctly according to parent")
-		await drag_card(card, Vector2(100,100))
+		await drag_card(card, Vector2(150, 150))
 		for c in card.attachments:
 			assert_false(c.highlight.visible,
 			"No card has potential_host highlighted when their parent is moving onto them")
@@ -88,14 +88,14 @@ class TestAttachAndSwitch:
 
 		card = cards[1]
 		card_prev_pos = card.global_position
-		await drag_card(card, Vector2(700,100))
+		await drag_card(card, Vector2(1050, 150))
 		assert_almost_ne(card_prev_pos,card.global_position, Vector2(2,2),
 				"Dragging an attached card is allowed")
 		drop_card(card,board._UT_mouse_position)
 		await wait_card_tween(card, 1)
 		assert_almost_eq(card_prev_pos,card.global_position, Vector2(2,2),
 				"After dropping an attached card, it returns to the parent host")
-		await drag_drop(card,Vector2(400,600))
+		await drag_drop(card,Vector2(600, 900))
 		assert_null(card.current_host_card,
 				"Attachment clears out correctly when removed from table")
 		assert_eq(2,len(cards[0].attachments),
@@ -106,10 +106,10 @@ class TestAttachAndSwitch:
 				"Removing an attachment reorganizes other attachments")
 
 		card = cards[4]
-		await drag_drop(card,Vector2(610,230))
+		await drag_drop(card,Vector2(915, 345))
 
 		card = cards[3]
-		await drag_drop(card,Vector2(630,230))
+		await drag_drop(card,Vector2(945, 345))
 		assert_eq(card.current_host_card,cards[4],
 				"Attached card can attach to another and clears out previous attachments")
 		assert_eq(card,cards[4].attachments.front(),
@@ -123,7 +123,7 @@ class TestAttachAndSwitch:
 
 		card = cards[0]
 		exhost_attachments = card.attachments.duplicate()
-		await drag_drop(card,Vector2(630,230))
+		await drag_drop(card,Vector2(945, 345))
 		assert_eq(card.current_host_card,cards[4],
 				"Previous host attached itself properly")
 		assert_eq(0,len(card.attachments),
@@ -136,7 +136,7 @@ class TestAttachAndSwitch:
 
 		card = cards[4]
 		exhost_attachments = card.attachments.duplicate()
-		board._UT_interpolate_mouse_move(Vector2(100,100), Vector2(-1,-1), 10)
+		board._UT_interpolate_mouse_move(Vector2(150, 150), Vector2(-1,-1), 10)
 		await yield_for(0.3)
 		await drag_drop(card,cfc.NMAP.deck.position)
 		await yield_for(1) # Wait to allow dragging to start
@@ -157,23 +157,23 @@ class TestMultiHostHover:
 		board.get_node("EnableAttach").button_pressed = false
 
 		card = cards[0]
-		await drag_drop(card,Vector2(100,100))
+		await drag_drop(card,Vector2(150, 150))
 
 		card = cards[1]
-		await drag_drop(card,Vector2(200,100))
+		await drag_drop(card,Vector2(300, 150))
 
 		card = cards[2]
-		await drag_drop(card,Vector2(150,100))
+		await drag_drop(card,Vector2(225, 150))
 
 		board.get_node("EnableAttach").button_pressed = true
 
 		card = cards[3]
-		await drag_card(card, Vector2(150,100))
-		board._UT_interpolate_mouse_move(Vector2(150,100),card.global_position,10)
+		await drag_card(card, Vector2(225, 150))
+		board._UT_interpolate_mouse_move(Vector2(225, 150),card.global_position,10)
 		await yield_for(0.3)
 		assert_true(cards[2].highlight.visible,
 				"Card hovering over two or more with attachment flag on, highlights only the top one")
-		board._UT_interpolate_mouse_move(Vector2(300,100),card.global_position,10)
+		board._UT_interpolate_mouse_move(Vector2(450, 150),card.global_position,10)
 		await yield_for(0.3)
 		assert_false(cards[2].highlight.visible,
 				"Card leaving the hovering of a card, turns attach highlights off")
@@ -190,30 +190,30 @@ class TestAttachmentNodeOrder:
 		var attached_cards = []
 
 		host_card = cards[0]
-		await drag_drop(host_card,Vector2(300,300))
+		await drag_drop(host_card,Vector2(450, 450))
 		attached_cards = [cards[1],cards[2], cards[3]]
 			
 		attached_cards[0].attachment_mode = Card.AttachmentMode.ATTACH_BEHIND
-		await drag_drop(attached_cards[0], Vector2(310,310))
+		await drag_drop(attached_cards[0], Vector2(465, 465))
 		
 		assert_true(host_card.get_index() > attached_cards[0].get_index(), 
 			"Card attached behind host card comes before host parent node heirarchy")
 			
-		await drag_drop(attached_cards[0], Vector2(400,600))
+		await drag_drop(attached_cards[0], Vector2(600, 900))
 		await yield_for(0.1)
 		
 		attached_cards[0].attachment_mode = Card.AttachmentMode.ATTACH_IN_FRONT
-		await drag_drop(attached_cards[0], Vector2(310,310))
+		await drag_drop(attached_cards[0], Vector2(465, 465))
 		
 		assert_true(host_card.get_index() < attached_cards[0].get_index(), 
 			"Card attached above host card comes after host parent node heirarchy")
 			
-		await drag_drop(attached_cards[0], Vector2(400,600))
+		await drag_drop(attached_cards[0], Vector2(600, 900))
 		await yield_for(0.1)
 		
 		for attached_card in attached_cards:
 			attached_card.attachment_mode = Card.AttachmentMode.ATTACH_BEHIND
-			await drag_drop(attached_card, Vector2(310,310))
+			await drag_drop(attached_card, Vector2(465, 465))
 			await yield_for(0.1)
 		
 		assert_true(host_card.get_index() > attached_cards[0].get_index(),		
@@ -228,7 +228,7 @@ class TestAttachmentNodeOrder:
 		host_card._on_Card_mouse_entered()
 		click_card(host_card)
 		await yield_for(0.5) # Wait to allow dragging to start
-		board._UT_interpolate_mouse_move(Vector2(500,300),host_card.global_position)
+		board._UT_interpolate_mouse_move(Vector2(750, 450),host_card.global_position)
 		await yield_for(0.2)
 		assert_true(host_card.get_index() > attached_cards[0].get_index(),		
 			"Multiple attachments are correctly ordered relative to host when dragging")
@@ -244,11 +244,11 @@ class TestAttachmentNodeOrder:
 		
 		#move cards back to hand and then reattach with other attach mode
 		for attached_card in attached_cards:
-			await drag_drop(attached_card, Vector2(400,600))
+			await drag_drop(attached_card, Vector2(600, 900))
 		
 		for attached_card in attached_cards:
 			attached_card.attachment_mode = Card.AttachmentMode.ATTACH_IN_FRONT
-			await drag_drop(attached_card, Vector2(510,310))
+			await drag_drop(attached_card, Vector2(765, 465))
 			await yield_for(0.1)
 
 		assert_true(host_card.get_index() < attached_cards[0].get_index(),		
@@ -268,7 +268,7 @@ class TestAttachmentNodeOrder:
 		host_card._on_Card_mouse_entered()	
 		click_card(host_card, true, click_offset)
 		await yield_for(0.5) # Wait to allow dragging to start
-		board._UT_interpolate_mouse_move(Vector2(300,300)+click_offset,board._UT_mouse_position)
+		board._UT_interpolate_mouse_move(Vector2(450, 450)+click_offset,board._UT_mouse_position)
 		await yield_for(0.5)
 		assert_true(host_card.get_index() < attached_cards[0].get_index(),		
 			"Multiple attachments are correctly ordered relative to host when dragging")

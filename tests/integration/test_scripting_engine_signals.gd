@@ -17,7 +17,7 @@ class TestSignals:
 				"subject": "self",
 				"set_faceup": false}],
 				"trigger": "self"}}
-		await table_move(card, Vector2(100,100))
+		await table_move(card, Vector2(150, 150))
 		card.card_rotation = 90
 		await yield_to(card._flip_tween, "finished", 1)
 		assert_signal_emitted_with_parameters(
@@ -31,7 +31,7 @@ class TestSignals:
 				{"name": "flip_card",
 				"subject": "self",
 				"set_faceup": false}]}}
-		await table_move(target, Vector2(500,100))
+		await table_move(target, Vector2(750, 150))
 		target.card_rotation = 90
 		await yield_to(target._flip_tween, "finished", 1)
 		assert_signal_emitted_with_parameters(
@@ -107,8 +107,8 @@ class TestCardPropertiesFilter:
 				"filter_state_trigger": [{"filter_properties": {"Type": ttype2}}],
 				"trigger": "another"}}
 		await yield_for(0.5)
-		await table_move(target, Vector2(500,100))
-		await table_move(target2, Vector2(900,100))
+		await table_move(target, Vector2(750, 150))
+		await table_move(target2, Vector2(1350, 150))
 		target.card_rotation = 90
 		await yield_for(0.5)
 		assert_false(card.targeting_arrow.is_targeting,
@@ -178,7 +178,7 @@ class TestCardRotates:
 					"set_faceup": false}],
 				"filter_degrees": 0,
 				"trigger": "another"}}
-		await table_move(target, Vector2(500,100))
+		await table_move(target, Vector2(750, 150))
 		target.card_rotation = 90
 		if card._tween.get_ref():
 			await wait_card_tween(card, 1)
@@ -252,7 +252,7 @@ class TestCardViewed:
 					"set_faceup": false}],
 				"trigger": "another"}}
 
-		await table_move(target, Vector2(600,100))
+		await table_move(target, Vector2(900, 150))
 		target.is_faceup = false
 		if target._flip_tween:
 			await yield_to(target._flip_tween, "finished", 1)
@@ -300,7 +300,7 @@ class TestCardMovedToBoard:
 					"trigger": "another",
 					"set_faceup": false}],
 				"trigger": "another"}}
-		target.move_to(board, -1, Vector2(100,100))
+		target.move_to(board, -1, Vector2(150, 150))
 		if target._tween.get_ref():
 			await wait_card_tween(target, 1)
 		assert_signal_emitted_with_parameters(
@@ -618,8 +618,8 @@ class TestCardUnattached:
 					"subject": "self",
 					"set_faceup": false}],
 				"trigger": "another"}}
-		await table_move(host, Vector2(500,100))
-		await table_move(target, Vector2(500,50))
+		await table_move(host, Vector2(750, 150))
+		await table_move(target, Vector2(750, 75))
 		target.attach_to_host(host)
 		await yield_for(0.1)
 		assert_signal_emitted_with_parameters(
@@ -726,13 +726,13 @@ class TestSameSignalDiffTargets:
 							"subject": "trigger",
 							"trigger": "another",
 						}]}}
-		await drag_drop(card, Vector2(300,300))
+		await drag_drop(card, Vector2(450, 450))
 		await yield_for(0.2)
 		var void_token: Token = card.tokens.get_token("void")
 		assert_not_null(void_token)
 		if void_token:
 			assert_eq(void_token.count,2,"Token set to specified amount")
-		await drag_drop(target, Vector2(800,300))
+		await drag_drop(target, Vector2(1200, 450))
 		var industry_token: Token = target.tokens.get_token("industry")
 		assert_not_null(industry_token)
 		if industry_token:

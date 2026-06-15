@@ -12,27 +12,27 @@ func after_each():
 
 func test_fancy_reshuffle_all():
 	cfc.game_settings.fancy_movement = true
-	await drag_drop(cards[0], Vector2(300,300))
-	await drag_drop(cards[4], Vector2(1000,10))
+	await drag_drop(cards[0], Vector2(450, 450))
+	await drag_drop(cards[4], Vector2(1500, 15))
 	board.reshuffle_all_in_pile()
 	await yield_for(0.02)
 	# Tolerance widened: fancy movement tween starts on first _process frame
 	# and moves card along an arc toward viewport center.
 	# At 0.02s the card has barely moved but can exceed the old Vector2(10,10).
-	assert_almost_eq(Vector2(300, 300),cards[0].global_position,Vector2(30,30),
+	assert_almost_eq(Vector2(450, 450),cards[0].global_position,Vector2(45, 45),
 			"Card is not being teleported from where is expect by Tween")
-	assert_almost_eq(Vector2(1000, 10),cards[4].global_position,Vector2(30,30),
+	assert_almost_eq(Vector2(1500, 15),cards[4].global_position,Vector2(45, 45),
 			"Card is not being teleported from where is expect by Tween")
 	await wait_card_tween(cards[4])
 
 func test_basic_reshuffle_all():
 	cfc.game_settings.fancy_movement = false
-	await drag_drop(cards[0], Vector2(300,300))
-	await drag_drop(cards[4], Vector2(1000,10))
+	await drag_drop(cards[0], Vector2(450, 450))
+	await drag_drop(cards[4], Vector2(1500, 15))
 	board.reshuffle_all_in_pile()
 	await yield_for(0.02)
-	assert_almost_eq(Vector2(300, 300),cards[0].global_position,Vector2(30,30),
+	assert_almost_eq(Vector2(450, 450),cards[0].global_position,Vector2(45, 45),
 			"Card is not being teleported from where is expected by Tween")
-	assert_almost_eq(Vector2(1000, 10),cards[4].global_position,Vector2(30,30),
+	assert_almost_eq(Vector2(1500, 15),cards[4].global_position,Vector2(45, 45),
 			"Card is not being teleported from where is expected by Tween")
 	await wait_card_tween(cards[4])

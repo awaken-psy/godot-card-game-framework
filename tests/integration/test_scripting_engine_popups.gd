@@ -25,7 +25,7 @@ class TestFilteredMultipleChoice:
 					},
 				},
 		}
-		await table_move(card, Vector2(100,200))
+		await table_move(card, Vector2(150, 300))
 		target.is_faceup = false
 		await yield_for(0.1)
 		var menu = board.get_node("CardChoices")
@@ -151,7 +151,7 @@ class TestScriptConfirmDialog:
 					{"name": "rotate_card",
 					"subject": "self",
 					"degrees":  180}]}}
-		await table_move(card, Vector2(500,200))
+		await table_move(card, Vector2(750, 300))
 		card.execute_scripts()
 		confirm = board.get_node("OptionalConfirmation")
 		assert_not_null(confirm)

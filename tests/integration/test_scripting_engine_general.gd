@@ -8,7 +8,7 @@ class TestBasics:
 				{"name": "rotate_card",
 				"subject": "self",
 				"degrees": 270}]}}
-		await table_move(card, Vector2(100,200))
+		await table_move(card, Vector2(150, 300))
 		card.execute_scripts()
 		assert_eq(target.card_rotation, 0,
 				"Script should not work from a different state")
@@ -64,7 +64,7 @@ class TestStateExecutions:
 				{"name": "flip_card",
 				"subject": "self",
 				"set_faceup": false}]}}
-		await table_move(card, Vector2(500,100))
+		await table_move(card, Vector2(750, 150))
 		card.execute_scripts()
 		if target._flip_tween:
 			await yield_to(target._flip_tween, "finished", 0.5) 
@@ -86,14 +86,14 @@ class TestStateExecutions:
 		card.scripts = {"manual": {"pile": [
 				{"name": "move_card_to_board",
 				"subject": "self",
-				"board_position":  Vector2(100,100)}]}}
+				"board_position":  Vector2(150, 150)}]}}
 		discard._on_View_Button_pressed()
 		await yield_for(1) 
 		card.execute_scripts()
 		if card._tween.get_ref():
 			var tween = card._tween.get_ref()
 			await yield_to(tween, "finished", 0.5) 
-		assert_eq(Vector2(100,100),card.global_position,
+		assert_eq(Vector2(150, 150),card.global_position,
 				"Card should have moved to specified position")
 		card.move_to(cfc.NMAP.discard)
 		if card._tween.get_ref():
@@ -104,7 +104,7 @@ class TestStateExecutions:
 		if card._tween.get_ref():
 			var tween = card._tween.get_ref()
 			await wait_card_tween(card, 1) 
-		assert_eq(Vector2(100,100),card.global_position,
+		assert_eq(Vector2(150, 150),card.global_position,
 				"Card should have moved to specified position")
 
 
@@ -115,8 +115,8 @@ class TestCardScripts:
 	func test_CardScripts():
 		card = cards[1]
 		target = cards[3]
-		await table_move(target, Vector2(800,200))
-		await table_move(card, Vector2(100,200))
+		await table_move(target, Vector2(1200, 300))
+		await table_move(card, Vector2(150, 300))
 		card.execute_scripts()
 		await target_card(card,target,"slow")
 		if target._tween:
@@ -126,7 +126,7 @@ class TestCardScripts:
 				"Test1 script leaves target facedown")
 		assert_eq(target.card_rotation, 180,
 				"Test1 script rotates 180 degrees")
-		await table_move(cards[4], Vector2(500,200))
+		await table_move(cards[4], Vector2(750, 300))
 		card.execute_scripts()
 		await target_card(card,cards[4])
 		if cards[4]._tween: 
@@ -151,7 +151,7 @@ class TestTargetScriptOnDragFromHand:
 					"subject": "target",
 					"set_faceup": false}]}}
 		card.hand_drag_starts_targeting = true
-		await drag_card(card, Vector2(300,300))
+		await drag_card(card, Vector2(450, 450))
 		assert_true(card.targeting_arrow.get_node("ArrowHead").visible,
 				"Targeting has started on long-click")
 		await target_card(card,target)
@@ -168,7 +168,7 @@ class TestTargetScriptOnDragFromHand:
 					"subject": "target",
 					"set_faceup": false}]}}
 		target = cards[2]
-		await drag_card(card, Vector2(300,300))
+		await drag_card(card, Vector2(450, 450))
 		assert_false(card.targeting_arrow.get_node("ArrowHead").visible,
 				"Targeting not started because costs cannot be paid")
 		await target_card(card,target)
@@ -185,7 +185,7 @@ class TestTargetScriptOnDragFromHand:
 					"modification": -10,
 					"is_cost": true,
 					"counter_name": "credits"}]}}
-		await drag_card(card, Vector2(300,300))
+		await drag_card(card, Vector2(450, 450))
 		assert_true(card.targeting_arrow.get_node("ArrowHead").visible,
 				"Targeting started because targeting is_cost")
 		await target_card(card,target)
@@ -201,7 +201,7 @@ class TestTargetScriptOnDragFromHand:
 					{"name": "mod_counter",
 					"modification": -3,
 					"counter_name": "credits"}]}}
-		await drag_card(card, Vector2(300,300))
+		await drag_card(card, Vector2(450, 450))
 		unclick_card_anywhere(card)
 		await yield_for(0.1) 
 		assert_eq(await board.counters.get_counter("credits"),8,
@@ -214,7 +214,7 @@ class TestTargetScriptOnDragFromHand:
 					"modification": -3,
 					"is_cost": true,
 					"counter_name": "credits"}]}}
-		await drag_card(card, Vector2(300,300))
+		await drag_card(card, Vector2(450, 450))
 		unclick_card_anywhere(card)
 		assert_eq(await board.counters.get_counter("credits"),5,
 				"Counter reduced since targeting was not a cost")

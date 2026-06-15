@@ -13,7 +13,7 @@ func test_single_card_draw_use_rectangle():
 			"Cards drawn is visible")
 	await wait_card_tween(card0)
 	await wait_card_tween(card0)
-	assert_almost_eq(412.0,card0.recalculate_position().x,5.0,
+	assert_almost_eq(618.0,card0.recalculate_position().x,5.0,
 			"Card position x is recalculated correctly")
 	assert_almost_eq(0.0,card0.recalculate_position().y,5.0,
 			"Card position y is recalculated correctly")
@@ -34,9 +34,9 @@ func test_single_card_draw_use_oval():
 			"Cards drawn is visible")
 	await wait_card_tween(card0)
 	await wait_card_tween(card0)
-	assert_almost_eq(412.0,card0.recalculate_position().x,5.0,
+	assert_almost_eq(618.0,card0.recalculate_position().x,5.0,
 			"Card position x is recalculated correctly")
-	assert_almost_eq(-60.0,card0.recalculate_position().y,5.0,
+	assert_almost_eq(-90.0,card0.recalculate_position().y,5.0,
 			"Card position y is recalculated correctly")
 	assert_almost_eq(hand.to_global(card0.recalculate_position()),
 			card0.global_position,Vector2(2,2),
@@ -61,15 +61,15 @@ func test_draw_multiple_cards_slow_use_rectangle():
 	var card2: Card = hand.draw_card()
 	await wait_card_tween(card2)
 	await wait_card_tween(card2)
-	assert_almost_eq(250.0,card0.recalculate_position().x,5.0,
+	assert_almost_eq(375.0,card0.recalculate_position().x,5.0,
 			"Index 0 card position x is recalculated correctly")
 	assert_almost_eq(0.0,card0.recalculate_position().y,5.0,
 			"Index 0 card position y is recalculated correctly")
-	assert_almost_eq(415.0,card1.recalculate_position().x,5.0,
+	assert_almost_eq(622.0,card1.recalculate_position().x,5.0,
 			"Index 1 card position x is recalculated correctly")
 	assert_almost_eq(0.0,card1.recalculate_position().y,5.0,
 			"Index 1 card position y is recalculated correctly")
-	assert_almost_eq(580.0,card2.recalculate_position().x,5.0,
+	assert_almost_eq(870.0,card2.recalculate_position().x,5.0,
 			"Index 2 card position x is recalculated correctly")
 	assert_almost_eq(0.0,card2.recalculate_position().y,5.0,
 			"Index 2 card position y is recalculated correctly")
@@ -97,17 +97,17 @@ func test_draw_multiple_cards_slow_use_oval():
 	var card2: Card = hand.draw_card()
 	await wait_card_tween(card2)
 	await wait_card_tween(card2)
-	assert_almost_eq(238.0,card0.recalculate_position().x,5.0,
+	assert_almost_eq(357.0,card0.recalculate_position().x,5.0,
 			"Index 0 card position x is recalculated correctly")
-	assert_almost_eq(-48.754,card0.recalculate_position().y,5.0,
+	assert_almost_eq(-73.0,card0.recalculate_position().y,5.0,
 			"Index 0 card position y is recalculated correctly")
-	assert_almost_eq(412.0,card1.recalculate_position().x,5.0,
+	assert_almost_eq(618.0,card1.recalculate_position().x,5.0,
 			"Index 1 card position x is recalculated correctly")
-	assert_almost_eq(-60.0,card1.recalculate_position().y,5.0,
+	assert_almost_eq(-90.0,card1.recalculate_position().y,5.0,
 			"Index 1 card position y is recalculated correctly")
-	assert_almost_eq(585.0,card2.recalculate_position().x,5.0,
+	assert_almost_eq(878.0,card2.recalculate_position().x,5.0,
 			"Index 2 card position x is recalculated correctly")
-	assert_almost_eq(-48.754,card2.recalculate_position().y,5.0,
+	assert_almost_eq(-73.0,card2.recalculate_position().y,5.0,
 			"Index 2 card position y is recalculated correctly")
 	assert_almost_eq(card0.recalculate_position(),card0.position,Vector2(2,2),
 			"Card at index 0 placed in correct position")

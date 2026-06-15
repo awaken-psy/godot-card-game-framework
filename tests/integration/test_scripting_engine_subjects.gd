@@ -4,7 +4,7 @@ class TestSubjectTarget:
 	extends "res://tests/ScEng_common.gd"
 
 	func test_subject_target():
-		await table_move(card, Vector2(100,200))
+		await table_move(card, Vector2(150, 300))
 		card.scripts = {"manual": {"board": [
 				{"name": "rotate_card",
 				"subject": "target",
@@ -35,8 +35,8 @@ class TestSubjectBoardseek:
 		var target2: Card = cards[2]
 		var ttype : String = target.properties["Type"]
 		var ttype2 : String = target2.properties["Type"]
-		await table_move(target, Vector2(500,200))
-		await table_move(cards[2], Vector2(800,200))
+		await table_move(target, Vector2(750, 300))
+		await table_move(cards[2], Vector2(1200, 300))
 		card.scripts = {"manual": {"hand": [
 				{"name": "rotate_card",
 				"subject": "boardseek",
@@ -66,7 +66,7 @@ class TestSubjectPrevious:
 				"subject": "index",
 				"subject_index": 1,
 				"src_container": "deck",
-				"board_position":  Vector2(1000,200)},
+				"board_position":  Vector2(1500, 300)},
 				{"name": "flip_card",
 				"subject": "previous",
 				"set_faceup": true},
@@ -86,8 +86,8 @@ class TestSubjectPrevious:
 		var target2: Card = cards[2]
 		@warning_ignore("unused_variable")
 		var ttype : String = target.properties["Type"]
-		await table_move(target, Vector2(500,200))
-		await table_move(cards[2], Vector2(800,200))
+		await table_move(target, Vector2(750, 300))
+		await table_move(cards[2], Vector2(1200, 300))
 		card.scripts = {"manual": {"hand": [
 				{"name": "rotate_card",
 				"subject": "boardseek",
@@ -114,7 +114,7 @@ class TestSubjectTutor:
 				"subject": "tutor",
 				"src_container": "deck",
 				"filter_state_tutor": [{"filter_properties": {"Type": "Red"}}],
-				"board_position":  Vector2(1000,200)}]}}
+				"board_position":  Vector2(1500, 300)}]}}
 		card.execute_scripts()
 		target = cfc.NMAP.board.get_card(0)
 		await wait_card_tween(target, 0.5) 
@@ -126,7 +126,7 @@ class TestSubjectTutor:
 				"src_container": "deck",
 				"filter_state_tutor": [{"filter_properties":
 					{"Name": "Multiple Choices Test Card"}}],
-				"board_position":  Vector2(100,200)}]}}
+				"board_position":  Vector2(150, 300)}]}}
 		card.execute_scripts()
 		target = cfc.NMAP.board.get_card(1)
 		await wait_card_tween(target, 0.5) 
@@ -143,7 +143,7 @@ class TestSubjectIndex:
 				"subject": "index",
 				"subject_index": 5,
 				"src_container": "deck",
-				"board_position":  Vector2(1000,200)}]}}
+				"board_position":  Vector2(1500, 300)}]}}
 		card.execute_scripts()
 		await wait_card_tween(target, 0.5) 
 		assert_eq(cfc.NMAP.board,target.get_parent(),
@@ -153,7 +153,7 @@ class TestSubjectIndex:
 				{"name": "move_card_to_board",
 				"subject": "index",
 				"src_container": "deck",
-				"board_position":  Vector2(100,200)}]}}
+				"board_position":  Vector2(150, 300)}]}}
 		card.execute_scripts()
 		await wait_card_tween(target, 0.5) 
 		assert_eq(cfc.NMAP.board,target.get_parent(),

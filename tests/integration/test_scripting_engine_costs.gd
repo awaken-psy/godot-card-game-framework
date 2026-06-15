@@ -20,14 +20,14 @@ class TestSelfandRotate:
 				{"name": "flip_card",
 				"subject": "self",
 				"set_faceup": false}]}}
-		await table_move(card, Vector2(100,200))
+		await table_move(card, Vector2(150, 300))
 		card.execute_scripts()
 		if (card._flip_tween and card._flip_tween.is_running()):
 			await yield_to(card._flip_tween, "finished", 0.5)
 		assert_false(card.is_faceup,
 				"card turn face-down because "
 				+ "rotation cost could be paid")
-		await table_move(cards[1], Vector2(500,200))
+		await table_move(cards[1], Vector2(750, 300))
 		cards[1].card_rotation = 90
 		cards[1].execute_scripts()
 		if (cards[1]._flip_tween and cards[1]._flip_tween.is_running):
@@ -56,7 +56,7 @@ class TestTargetCosts:
 				{"name": "flip_card",
 				"subject": "self",
 				"set_faceup": false}]}}
-		await table_move(target, Vector2(100,200))
+		await table_move(target, Vector2(150, 300))
 		card.execute_scripts()
 		await target_card(card,target)
 		if (card._flip_tween and card._flip_tween.is_running()):
@@ -89,7 +89,7 @@ class TestMultipleCosts:
 				"subject": "self",
 				"is_cost": true,
 				"set_faceup": false}]}}
-		await table_move(target, Vector2(100,200))
+		await table_move(target, Vector2(150, 300))
 		target.is_faceup = false
 		if (card._flip_tween and card._flip_tween.is_running()):
 			await yield_to(card._flip_tween, "finished", 0.5)
@@ -115,7 +115,7 @@ class TestFlipCost:
 				{"name": "rotate_card",
 				"subject": "self",
 				"degrees": 90},]}}
-		await table_move(card, Vector2(100,200))
+		await table_move(card, Vector2(150, 300))
 		card.is_faceup = false
 		card.execute_scripts()
 		if card._tween.get_ref():
@@ -137,7 +137,7 @@ class TestTokenCost:
 				{"name": "rotate_card",
 				"subject": "self",
 				"degrees": 90}]}}
-		await table_move(card, Vector2(1000,200))
+		await table_move(card, Vector2(1500, 300))
 		card.execute_scripts()
 		if card._tween.get_ref():
 			var _tween = card._tween.get_ref()
@@ -271,7 +271,7 @@ class TestMoveCardContToBoard:
 				"subject_index": "top",
 				"subject_count": 7,
 				"src_container": "deck",
-				"board_position":  Vector2(100,100)},
+				"board_position":  Vector2(150, 150)},
 				{"name": "flip_card",
 				"subject": "self",
 				"set_faceup": false}]}}
@@ -289,7 +289,7 @@ class TestMoveCardContToBoard:
 				"subject_index": "top",
 				"subject_count": 7,
 				"src_container": "deck",
-				"board_position":  Vector2(100,100)},
+				"board_position":  Vector2(150, 150)},
 				{"name": "flip_card",
 				"subject": "self",
 				"set_faceup": false}]}}
@@ -364,7 +364,7 @@ class TestCountersCost:
 				{"name": "rotate_card",
 				"subject": "self",
 				"degrees": 90}]}}
-		await table_move(card, Vector2(200,200))
+		await table_move(card, Vector2(300, 300))
 		card.execute_scripts()
 		if card._tween.get_ref():
 			var _tween = card._tween.get_ref()

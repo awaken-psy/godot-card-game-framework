@@ -19,7 +19,7 @@ class TestCostsWithAlterants:
 				{"name": "rotate_card",
 				"subject": "self",
 				"degrees": 90}]}}
-		await table_move(card, Vector2(200,200))
+		await table_move(card, Vector2(300, 300))
 		card.execute_scripts()
 		assert_eq(await board.counters.get_counter("research"),5,
 				"Counter not modifed because it brought cost too high")
@@ -305,7 +305,7 @@ class TestTokenAlterants:
 				"subject": "self",
 				"modification": 3,
 				"token_name":  "industry"}]}}
-		await table_move(card, Vector2(200,200))
+		await table_move(card, Vector2(300, 300))
 		card.execute_scripts()
 		var industry_token: Token = card.tokens.get_token("industry")
 		var blood_token: Token = card.tokens.get_token("blood")
@@ -339,7 +339,7 @@ class TestSpawnCardAlterants:
 				{"name": "spawn_card",
 				"card_name": "Spawn Card",
 				"object_count": 1,
-				"board_position":  Vector2(200,200)}]}}
+				"board_position":  Vector2(300, 300)}]}}
 		card.execute_scripts()
 		assert_eq(4,board.get_card_count(),
 			"Correct amount of cards spawned on board")
@@ -376,7 +376,7 @@ class TestGetTokenAlterants:
 	extends "res://tests/ScEng_common.gd"
 
 	func test_get_token_alterants():
-		await table_move(target, Vector2(200,200))
+		await table_move(target, Vector2(300, 300))
 	# warning-ignore:return_value_discarded
 		target.tokens.mod_token("blood")
 	# warning-ignore:return_value_discarded

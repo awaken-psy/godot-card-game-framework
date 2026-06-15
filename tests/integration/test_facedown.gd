@@ -18,7 +18,7 @@ func test_board_facedown():
 	card = cards[3]
 	var card_front = card.get_node("Control/Front")
 	var card_back = card.get_node("Control/Back")
-	await table_move(card, Vector2(600,200))
+	await table_move(card, Vector2(900, 300))
 	card.is_faceup = false
 	await yield_to(card._flip_tween, "finished", 1)
 	assert_false(card_front.visible,
@@ -107,7 +107,7 @@ func test_board_facedown():
 	assert_true(viewed_icon.visible,
 			"View icon is visible while card is is_viewed()")
 
-	await move_mouse(card.global_position - Vector2(0,100))
+	await move_mouse(card.global_position - Vector2(0, 150))
 #	yield(yield_for(0.2), YIELD) # Wait to allow dupe to be destroyed
 	await move_mouse(card.global_position)
 #	yield(yield_for(0.2), YIELD) # Wait to allow dupe to be created

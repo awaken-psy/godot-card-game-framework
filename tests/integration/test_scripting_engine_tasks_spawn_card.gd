@@ -8,7 +8,7 @@ class TestSpawnCard:
 				{"name": "spawn_card",
 				"card_name": "Spawn Card",
 				"object_count": 3,
-				"board_position":  Vector2(500,200)}]}}
+				"board_position":  Vector2(750, 300)}]}}
 		target.execute_scripts()
 		assert_eq(3,board.get_card_count(),
 			"Card spawned on board")
@@ -17,7 +17,7 @@ class TestSpawnCard:
 			"Card of the correct scene spawned")
 		assert_eq(Card.CardState.ON_PLAY_BOARD,card.state,
 			"Spawned card left in correct state")
-		assert_almost_eq(Vector2(500,200),card.position,Vector2(2,2),
+		assert_almost_eq(Vector2(750, 300),card.position,Vector2(2,2),
 			"Card spawned in correct location")
 		var offsetx = CFConst.CARD_SIZE.x * CFConst.PLAY_AREA_SCALE
 		assert_almost_eq(Vector2(500 + offsetx * 2,200),
@@ -49,7 +49,7 @@ class TestSpawnAndModifyCard:
 					"name": "spawn_card",
 					"card_name": "Spawn Card",
 					"object_count": 1,
-					"board_position":  Vector2(500,200)
+					"board_position":  Vector2(750, 300)
 				},
 				{
 					"name": "rotate_card",
@@ -69,7 +69,7 @@ class TestSpawnAndModifyCard:
 					"name": "spawn_card",
 					"card_name": "Spawn Card",
 					"object_count": 1,
-					"board_position":  Vector2(500,200)
+					"board_position":  Vector2(750, 300)
 				},
 				{
 					"name": "modify_properties",

@@ -26,7 +26,7 @@ class TestRotateCard:
 				{"name": "rotate_card",
 				"subject": "self",
 				"degrees": 90}]}}
-		await table_move(card, Vector2(100,200))
+		await table_move(card, Vector2(150, 300))
 		card.execute_scripts()
 		await wait_card_tween(card, 1)
 		assert_eq(card.card_rotation, 90,
@@ -114,13 +114,13 @@ class TestMoveCardHandToBoard:
 		card.scripts = {"manual": {"hand": [
 				{"name": "move_card_to_board",
 				"subject": "self",
-				"board_position":  Vector2(100,100)}]}}
+				"board_position":  Vector2(150, 150)}]}}
 		card.execute_scripts()
 		if card._tween.get_ref():
 			await wait_card_tween(card, 0.5)
 		assert_eq(cfc.NMAP.board,card.get_parent(),
 				"Card should have moved to board")
-		assert_eq(Vector2(100,100),card.global_position,
+		assert_eq(Vector2(150, 150),card.global_position,
 				"Card should have moved to specified position")
 
 class TestMoveCard:
@@ -163,12 +163,12 @@ class TestMoveCard:
 				"subject": "index",
 				"subject_index": 5,
 				"src_container": "deck",
-				"board_position":  Vector2(1000,200)}]}}
+				"board_position":  Vector2(1500, 300)}]}}
 		card.execute_scripts()
 		if card._tween.get_ref():
 			await wait_card_tween(card, 0.5)
 		await yield_for(0.2)
-		assert_almost_eq(Vector2(1000,200),target.global_position, Vector2(5,5),
+		assert_almost_eq(Vector2(1500, 300),target.global_position, Vector2(5,5),
 				"Card should have moved to specified board position")
 		target = cfc.NMAP.deck.get_card(0)
 		var target2 = cfc.NMAP.deck.get_card(1)
@@ -254,7 +254,7 @@ class TestAttachCard:
 	extends "res://tests/ScEng_common.gd"
 
 	func test_attach_to_card():
-		await table_move(target, Vector2(500,400))
+		await table_move(target, Vector2(750, 600))
 		card.scripts = {"manual": {"hand": [
 				{"name": "attach_to_card",
 				"subject": "target"}]}}
@@ -269,7 +269,7 @@ class TestHostCard:
 	extends "res://tests/ScEng_common.gd"
 
 	func test_host_card():
-		await table_move(card, Vector2(500,400))
+		await table_move(card, Vector2(750, 600))
 		card.scripts = {"manual": {"board": [
 				{"name": "host_card",
 				"subject": "target"}]}}
@@ -288,7 +288,7 @@ class TestCreateGrid:
 				{"name": "add_grid",
 				"scene_path": "res://src/custom/CGFPlacementGridDemo.tscn",
 				"object_count": 2,
-				"board_position":  Vector2(50,50)}]}}
+				"board_position":  Vector2(75, 75)}]}}
 		await execute_with_yield(card)
 		var grids: Array = get_tree().get_nodes_in_group("placement_grid")
 		assert_eq(grids.size(), 3, "All grids were created")
@@ -297,7 +297,7 @@ class TestCreateGrid:
 				"scene_path": "res://src/custom/CGFPlacementGridDemo.tscn",
 				"grid_name": "GUT Grid",
 				"object_count": 3,
-				"board_position":  Vector2(600,50)}]}}
+				"board_position":  Vector2(900, 75)}]}}
 		await execute_with_yield(card)
 		var gut_grids := []
 		for g in get_tree().get_nodes_in_group("placement_grid"):

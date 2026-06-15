@@ -16,11 +16,11 @@ class TestMoveToContainer:
 
 	func test_move_to_multiple_container():
 		await drag_drop(cards[2], cfc.NMAP.discard.position + Vector2(10,10))
-		await move_mouse(Vector2(500,300))
+		await move_mouse(Vector2(750, 450))
 		await drag_drop(cards[4], cfc.NMAP.deck.position + Vector2(10,10))
-		await move_mouse(Vector2(500,300))
+		await move_mouse(Vector2(750, 450))
 		await drag_drop(cards[1], cfc.NMAP.discard.position + Vector2(10,10))
-		await move_mouse(Vector2(500,300))
+		await move_mouse(Vector2(750, 450))
 		await drag_drop(cards[0], cfc.NMAP.deck.position + Vector2(10,10))
 		if cards[0]._tween:
 			await wait_card_tween(cards[0], 0.5) 
@@ -48,7 +48,7 @@ class TestMoveToContainer:
 	func test_move_from_board_to_deck_to_hand():
 		var card: Card
 		card = cards[2]
-		await drag_drop(card, Vector2(1000,100))
+		await drag_drop(card, Vector2(1500, 150))
 		await drag_drop(card, cfc.NMAP.deck.position)
 		if card._tween:
 			await wait_card_tween(card, 0.5) 
@@ -98,7 +98,7 @@ class TestPopupView:
 		await yield_for(1) 
 		assert_eq(13,discard.get_node("ViewPopup/CardView").get_child_count(),
 				"Hosting a card in the pile, while popup is open, puts it in the popup")
-		assert_eq(Vector2(0.75,0.75),cards[1].scale,
+		assert_eq(Vector2(0.75, 0.75),cards[1].scale,
 				"Moving a card into the popup, should scale it")
 		pending("Drawing a card from the pile, picks it from the popup")
 		assert_false(discard.get_node("Control/ManipulationButtons").visible,
@@ -117,7 +117,7 @@ class TestPopupView:
 		await yield_for(0.3) 
 		assert_eq(Vector2(0,0),card.position,
 				"Moving card from popup back to the same pile, should do nothing")
-		assert_eq(Vector2(0.75,0.75),card.scale,
+		assert_eq(Vector2(0.75, 0.75),card.scale,
 				"Moving card from popup back to the same pile, should do nothing")
 		assert_true(card.is_faceup,
 				"Moving card from popup back to the same pile, should do nothing")
